@@ -16,6 +16,10 @@ import edu.ncsu.csc316.dsa.list.List;
 import edu.ncsu.csc316.dsa.map.Map;
 import edu.ncsu.csc316.dsa.sorter.Sorter;
 
+/**
+ * CleaningManager
+ * @author simba
+ */
 public class CleaningManager {
 	
 	/** A map holding RoomRecords which are accessible by the room's ID. */
@@ -32,7 +36,6 @@ public class CleaningManager {
         // Setup DSAFactory
     	DSAFactory.setListType(DataStructure.ARRAYBASEDLIST);
         DSAFactory.setComparisonSorterType(Algorithm.MERGESORT);
-        //DSAFactory.setNonComparisonSorterType(...); TODO ?
         DSAFactory.setMapType(mapType);
         
         // Create new empty map to hold rooms
@@ -56,11 +59,7 @@ public class CleaningManager {
         // Transfer the CleaningLogEntrys into our eventsByRoom map
         for(CleaningLogEntry c : cleanings) {
         	eventsByRoom.get(c.getRoomID()).addLast(c);
-        }
-        
-        //TODO remove
-        //Sorter<CleaningLogEntry> CLESorter = DSAFactory.getComparisonSorter(new CLERoomTimeComparator());
-        
+        }   
     }
     
     
