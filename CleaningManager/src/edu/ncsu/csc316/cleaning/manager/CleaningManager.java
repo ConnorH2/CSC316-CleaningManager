@@ -14,11 +14,12 @@ import edu.ncsu.csc316.cleaning.dsa.DataStructure;
 import edu.ncsu.csc316.cleaning.io.InputReader;
 import edu.ncsu.csc316.dsa.list.List;
 import edu.ncsu.csc316.dsa.map.Map;
-import edu.ncsu.csc316.dsa.sorter.Sorter;
 
 /**
- * CleaningManager
- * @author simba
+ * CleaningManager assists in creating reports by 
+ * creating data structures holding RoomRecords and CleaningLogEntries, 
+ * and providing methods to access those data structures.
+ * @author Connor Hekking
  */
 public class CleaningManager {
 	
@@ -28,10 +29,17 @@ public class CleaningManager {
 	/** A map holding Lists of CleaningLogEntries which belong to a certain room ID. */
 	private Map<String, List<CleaningLogEntry>> eventsByRoom;
 	
-	// unsorted, sort when requested by ReportManager
-	/** A list of all cleaning log entries. */
+	/** An unsorted list of all cleaning log entries. */
 	private List<CleaningLogEntry> cleanings;
 	
+	/**
+	 * Constructor which creates a new CleaningManager object with a specified mapType.
+	 * This constructor initializes and fills RoomRecord and CleaningLogEntry data structures using IO methods.
+	 * @param pathToRoomFile The path to the file of RoomRecords which should be used
+	 * @param pathToLogFile The path to the file of CleaningLogEntrys which should be used
+	 * @param mapType The type of map to use when creating data structures
+	 * @throws FileNotFoundException If either of the specified data files cannot be found
+	 */
     public CleaningManager(String pathToRoomFile, String pathToLogFile, DataStructure mapType) throws FileNotFoundException {
         // Setup DSAFactory
     	DSAFactory.setListType(DataStructure.ARRAYBASEDLIST);
@@ -62,7 +70,13 @@ public class CleaningManager {
         }   
     }
     
-    
+    /**
+	 * Constructor which creates a new CleaningManager object with the default SkipList mapType.
+	 * This constructor initializes and fills RoomRecord and CleaningLogEntry data structures using IO methods.
+	 * @param pathToRoomFile The path to the file of RoomRecords which should be used
+	 * @param pathToLogFile The path to the file of CleaningLogEntrys which should be used
+	 * @throws FileNotFoundException If either of the specified data files cannot be found
+	 */
     public CleaningManager(String pathToRoomFile, String pathToLogFile) throws FileNotFoundException {
         this(pathToRoomFile, pathToLogFile, DataStructure.SKIPLIST);
     }

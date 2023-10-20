@@ -15,12 +15,27 @@ import edu.ncsu.csc316.dsa.map.Map;
 import edu.ncsu.csc316.dsa.map.Map.Entry;
 import edu.ncsu.csc316.dsa.sorter.Sorter;
 
+/**
+ * ReportManager generates reports for the main ui function 
+ * using data structures provided by a CleaningManager object.
+ * @author Connor Hekking
+ */
 public class ReportManager {
 
+	/** DateTimeFormatter object for use in turning a given time string into a LocalDateTime object. */
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
 	
+    /** CleaningManager object for use in creating data structures for generating reports. */
     private CleaningManager manager;
 
+    /**
+     * ReportManager constructor with a specified mapType.
+     * This constructor initializes a new CleaningManager object.
+     * @param pathToRoomFile The path to the file of RoomRecords which should be used
+	 * @param pathToLogFile The path to the file of CleaningLogEntrys which should be used
+	 * @param mapType The type of map to use when creating data structures
+	 * @throws FileNotFoundException If either of the specified data files cannot be found
+     */
     public ReportManager(String pathToRoomFile, String pathToLogFile, DataStructure mapType) throws FileNotFoundException {
         manager = new CleaningManager(pathToRoomFile, pathToLogFile, mapType);
         DSAFactory.setListType(DataStructure.ARRAYBASEDLIST);
@@ -28,10 +43,25 @@ public class ReportManager {
         DSAFactory.setMapType(mapType);
     }
     
+    /**
+     * ReportManager constructor with the default SkipList mapType.
+     * This constructor initializes a new CleaningManager object.
+     * @param pathToRoomFile The path to the file of RoomRecords which should be used
+	 * @param pathToLogFile The path to the file of CleaningLogEntrys which should be used
+	 * @throws FileNotFoundException If either of the specified data files cannot be found
+     */
     public ReportManager(String pathToRoomFile, String pathToLogFile) throws FileNotFoundException {
         this(pathToRoomFile, pathToLogFile, DataStructure.SKIPLIST);
     }
 
+    /**
+     * Method which creates a report of the estimated vacuum bag life.
+     * If the area since replacement is over 5280 square feet, the bag is overdue for replacement.
+     * If less than 5280 square feet, the area remaining in bag life will be shown.
+     * @param timestamp The time at which the bag was last replaced
+     * @return A string of output reporting if the bag needs to be replaced, 
+     * or how much area it can cover until then
+     */
     public String getVacuumBagReport(String timestamp) {
     	String s = "Vacuum Bag Report (last replaced " + timestamp + ") [\n";
     	
@@ -56,6 +86,12 @@ public class ReportManager {
     	return s;
     }
 
+    /**
+     * Method which creates a report of the most frequently cleaned rooms.
+     * A specified number of rooms will be listed in order of their cleaning frequency.
+     * @param number The number of rooms to report the frequency of
+     * @return A string of output containing the frequency report
+     */
     public String getFrequencyReport(int number) {
     	// Use a local variable which we can change
     	int roomNum = number;
@@ -113,6 +149,11 @@ public class ReportManager {
         return s;
     }
 
+    /**
+     * Method which creates a report of each time every room was cleaned. 
+     * Each room(in alphabetical order) will have its cleanings(in chronological order) printed.
+     * @return A string containing the room report
+     */
     public String getRoomReport() {
     	// Initialize our room report string
         String s = "Room Report [\n";
