@@ -1,0 +1,6 @@
+ROOM_ID,LENGTH,WIDTH
+Main Bedroom,62,65
+Main Bathroom,5,5
+Living Room,15,15
+Kitchen,10,12
+Dining Room,8,8
