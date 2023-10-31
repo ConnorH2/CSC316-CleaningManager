@@ -20,7 +20,7 @@ import edu.ncsu.csc316.dsa.map.Map.Entry;
  * @author Connor Hekking
  */
 class CleaningManagerTest {
-
+// TODO JAVADOC TEST CODE
 	/** CleaningManager object for testing. */
 	CleaningManager manager;
 	
