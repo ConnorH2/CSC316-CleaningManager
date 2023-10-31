@@ -52,7 +52,7 @@ public class CleaningManager {
         eventsByRoom = DSAFactory.getMap(null);
         
         // Insert RoomRecords from InputReader's List to our Map, nlog(n) runtime
-        Iterator<RoomRecord> it1 = InputReader.readRoomFile(pathToLogFile).iterator();
+        Iterator<RoomRecord> it1 = InputReader.readRoomFile(pathToRoomFile).iterator();
         while(it1.hasNext()) {
         	RoomRecord c = it1.next();
         	// Insert the RoomRecord into our sorted map based on roomID
@@ -65,8 +65,10 @@ public class CleaningManager {
         cleanings = InputReader.readLogFile(pathToLogFile);
         
         // Transfer the CleaningLogEntrys into our eventsByRoom map
+        System.out.print(eventsByRoom.values().iterator().next().size()); // remove
         for(CleaningLogEntry c : cleanings) {
-        	eventsByRoom.get(c.getRoomID()).addLast(c);
+        	//System.out.print(c.getRoomID());
+            eventsByRoom.get(c.getRoomID()).addLast(c);
         }   
     }
     

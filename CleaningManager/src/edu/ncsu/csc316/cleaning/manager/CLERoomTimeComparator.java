@@ -25,7 +25,7 @@ public class CLERoomTimeComparator implements Comparator<CleaningLogEntry> {
 		if(roomComp != 0) {
 			return roomComp;
 		} else {
-			return one.getTimestamp().compareTo(two.getTimestamp());
+			return -one.getTimestamp().compareTo(two.getTimestamp());
 		}
 	}
 

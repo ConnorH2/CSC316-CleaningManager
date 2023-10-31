@@ -1,1 +1,2 @@
 ROOM_ID,LENGTH,WIDTH
+TestEmpty,0,0

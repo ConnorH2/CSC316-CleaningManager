@@ -81,7 +81,7 @@ public class ReportManager {
     	} else {
     		// Else, return the area until the bag is due for replacement
         	area = 5280 - area;
-        	s = s + "Bag is due for replacement in " + area + "SQ FT\n]";
+        	s = s + "   Bag is due for replacement in " + area + " SQ FT\n]";
     	}
     	return s;
     }
@@ -102,7 +102,7 @@ public class ReportManager {
     	}
     	
     	// Initialize our frequency report string
-        String s = "Room Report [\n";
+        String s = "Frequency of Cleanings [\n";
         // Standard indent for the report is three spaces.
         String indent = "   ";
         
@@ -200,7 +200,7 @@ public class ReportManager {
         	
         	// Print the timestamp for each cleaning
         	for(CleaningLogEntry currentCleaning : currentList) {
-        		s = s + indent + indent + currentCleaning.getTimestamp().toString() + "\n";
+        		s = s + indent + indent + currentCleaning.getTimestamp().format(DATE_TIME_FORMAT) + "\n";
         	}
         	
         	// If the room has no cleanings, print (never cleaned)

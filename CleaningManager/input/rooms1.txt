@@ -4,3 +4,4 @@ Main Bathroom,5,5
 Living Room,15,15
 Kitchen,10,12
 Dining Room,8,8
+Entryway,5,5
