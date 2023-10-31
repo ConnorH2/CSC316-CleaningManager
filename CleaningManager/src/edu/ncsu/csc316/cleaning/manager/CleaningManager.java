@@ -65,10 +65,11 @@ public class CleaningManager {
         cleanings = InputReader.readLogFile(pathToLogFile);
         
         // Transfer the CleaningLogEntrys into our eventsByRoom map
-        System.out.print(eventsByRoom.values().iterator().next().size()); // remove
         for(CleaningLogEntry c : cleanings) {
-        	//System.out.print(c.getRoomID());
-            eventsByRoom.get(c.getRoomID()).addLast(c);
+        	String a = c.getRoomID();
+        	List<CleaningLogEntry> b = eventsByRoom.get(a);
+        	b.addLast(c);
+            //eventsByRoom.get(c.getRoomID()).addLast(c);
         }   
     }
     
