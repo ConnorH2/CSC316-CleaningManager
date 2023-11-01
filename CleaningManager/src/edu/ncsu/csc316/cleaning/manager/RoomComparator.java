@@ -12,7 +12,7 @@ import edu.ncsu.csc316.dsa.map.Map.Entry;
  * by room name if frequencies are equal.
  * @author Connor Hekking
  */
-public class RoomComparator implements Comparator<Entry<String, List<CleaningLogEntry>>> {
+public class RoomComparator implements Comparator<String> {
 
 	/**
 	 * Compares eventsByRoom map entries by their cleaning frequencies then room name if frequencies are equal.
@@ -23,8 +23,8 @@ public class RoomComparator implements Comparator<Entry<String, List<CleaningLog
 	 * or an int less than zero if the frequency of room entry one is greater.
 	 */
 	@Override
-	public int compare(Entry<String, List<CleaningLogEntry>> one, Entry<String, List<CleaningLogEntry>> two) {
-		return one.getKey().compareTo(two.getKey());
+	public int compare(String one, String two) {
+		return one.compareTo(two);
 	}
 
 }
