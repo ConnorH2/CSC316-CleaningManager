@@ -49,7 +49,7 @@ public class CleaningManager {
         // Create new empty map to hold rooms
         rooms = DSAFactory.getMap(null); // Should use default comparator(alphabetic)
         // Create new empty map to hold events by room
-        eventsByRoom = DSAFactory.getMap(new RoomComparator());
+        eventsByRoom = DSAFactory.getMap(null);
         
         // Insert RoomRecords from InputReader's List to our Map, nlog(n) runtime
         Iterator<RoomRecord> it1 = InputReader.readRoomFile(pathToRoomFile).iterator();

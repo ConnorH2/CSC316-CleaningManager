@@ -23,7 +23,7 @@ public class CLERoomTimeComparator implements Comparator<CleaningLogEntry> {
 	public int compare(CleaningLogEntry one, CleaningLogEntry two) {
 		int roomComp = one.getRoomID().compareTo(two.getRoomID());
 		if(roomComp != 0) {
-			return roomComp;
+			return roomComp; // TODO Remove
 		} else {
 			return -one.getTimestamp().compareTo(two.getTimestamp());
 		}
