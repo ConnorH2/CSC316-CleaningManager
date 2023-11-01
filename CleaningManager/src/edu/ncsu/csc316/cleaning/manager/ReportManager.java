@@ -110,7 +110,8 @@ public class ReportManager {
         
         // If there are no rooms, print an error text
         if(cleaningsByRoom.size() == 0) {
-        	return "No rooms have been cleaned.";
+        	//return "No rooms have been cleaned.";
+        	return s + "No rooms have been cleaned.\n]";
         }
         
         // If requested number of rooms is greater than the number of rooms, report all of the rooms
@@ -133,7 +134,8 @@ public class ReportManager {
         
         // If there are no cleanings, print an error text.
         if(sortedList[0].getValue().size() == 0) {
-        	return "No rooms have been cleaned.";
+        	//return "No rooms have been cleaned.";
+        	return s + "No rooms have been cleaned.\n]";
         }
         
         // Print out the frequency report for each room
@@ -164,7 +166,8 @@ public class ReportManager {
         
         // If there are no rooms, report an error message
         if(cleaningsByRoom.size() == 0) {
-        	return "No rooms have been cleaned.";
+        	//return "No rooms have been cleaned.";
+        	return "Room Report [\nNo rooms have been cleaned.\n]";
         }
         
         // Create an iterator to access the map entries in O(n) runtime 
@@ -216,7 +219,8 @@ public class ReportManager {
         
         // Check if there are no entries, if not then report error message
         if(!hasEntries) {
-        	return "No rooms have been cleaned.";
+        	//return "No rooms have been cleaned.";
+        	return "Room Report [\nNo rooms have been cleaned.\n]";
         }
         
         // Return our constructed string
