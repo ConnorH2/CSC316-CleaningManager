@@ -66,6 +66,7 @@ public class CleaningManager {
         
         // Transfer the CleaningLogEntrys into our eventsByRoom map
         for(CleaningLogEntry c : cleanings) {
+        	System.out.println("Xx_GAMING_xX");
             eventsByRoom.get(c.getRoomID()).addLast(c);
         }   
     }
