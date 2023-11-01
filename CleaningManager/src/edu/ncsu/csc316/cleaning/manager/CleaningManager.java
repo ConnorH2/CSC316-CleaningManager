@@ -78,7 +78,7 @@ public class CleaningManager {
 	 * @throws FileNotFoundException If either of the specified data files cannot be found
 	 */
     public CleaningManager(String pathToRoomFile, String pathToLogFile) throws FileNotFoundException {
-        this(pathToRoomFile, pathToLogFile, DataStructure.SEARCHTABLE);
+        this(pathToRoomFile, pathToLogFile, DataStructure.SKIPLIST);
     }
 
     /**
