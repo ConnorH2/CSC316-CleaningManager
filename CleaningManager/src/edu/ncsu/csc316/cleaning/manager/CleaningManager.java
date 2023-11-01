@@ -66,9 +66,6 @@ public class CleaningManager {
         
         // Transfer the CleaningLogEntrys into our eventsByRoom map
         for(CleaningLogEntry c : cleanings) {
-        	if(cleanings.size() == 0) {
-        		throw new IllegalArgumentException();
-        	}
             eventsByRoom.get(c.getRoomID()).addLast(c);
         }   
     }
@@ -81,7 +78,7 @@ public class CleaningManager {
 	 * @throws FileNotFoundException If either of the specified data files cannot be found
 	 */
     public CleaningManager(String pathToRoomFile, String pathToLogFile) throws FileNotFoundException {
-        this(pathToRoomFile, pathToLogFile, DataStructure.SKIPLIST);
+        this(pathToRoomFile, pathToLogFile, DataStructure.SEARCHTABLE);
     }
 
     /**

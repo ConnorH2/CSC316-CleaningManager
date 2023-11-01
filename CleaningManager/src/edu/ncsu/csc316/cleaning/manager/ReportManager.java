@@ -51,7 +51,7 @@ public class ReportManager {
 	 * @throws FileNotFoundException If either of the specified data files cannot be found
      */
     public ReportManager(String pathToRoomFile, String pathToLogFile) throws FileNotFoundException {
-        this(pathToRoomFile, pathToLogFile, DataStructure.SKIPLIST);
+        this(pathToRoomFile, pathToLogFile, DataStructure.SEARCHTABLE);
     }
 
     /**
