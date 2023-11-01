@@ -66,11 +66,7 @@ public class CleaningManager {
         
         // Transfer the CleaningLogEntrys into our eventsByRoom map
         for(CleaningLogEntry c : cleanings) {
-        	// Only add the cleaningLogEntry if it has a valid room
-        	List<CleaningLogEntry> b = eventsByRoom.get(c.getRoomID());
-        	if(b != null) {
-        		eventsByRoom.get(c.getRoomID()).addLast(c);
-        	}
+            eventsByRoom.get(c.getRoomID()).addLast(c);
         }   
     }
     
@@ -110,11 +106,6 @@ public class CleaningManager {
     		if(currentEntry.getTimestamp().compareTo(time) > 0) {
     			// Current cleaning occurred after the bag replacement
     			RoomRecord currentRoom = rooms.get(currentEntry.getRoomID());
-    			
-    			// Skip CleaningLogEntrys that do not correspond to valid rooms
-    			if(currentRoom == null) {
-    				continue;
-    			}
     			
     			// Area of each CleaningEvent = (length*width*percentCleaned)/ 100
     			sum += currentRoom.getLength() * currentRoom.getWidth() * currentEntry.getPercentCompleted() / 100;

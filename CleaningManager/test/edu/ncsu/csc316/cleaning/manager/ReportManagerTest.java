@@ -177,8 +177,7 @@ class ReportManagerTest {
 			fail();
 		}
 		
-		//assertEquals("No rooms have been cleaned.", manager.getFrequencyReport(5));
-		assertEquals("Frequency of Cleanings [\nNo rooms have been cleaned.\n]", manager.getFrequencyReport(5));
+		assertEquals("No rooms have been cleaned.", manager.getFrequencyReport(5));
 	}
 
 	/**
@@ -227,8 +226,7 @@ class ReportManagerTest {
 			fail();
 		}
 		
-		//assertEquals("No rooms have been cleaned.", manager.getRoomReport());
-		assertEquals("Room Report [\nNo rooms have been cleaned.\n]", manager.getRoomReport());
+		assertEquals("No rooms have been cleaned.", manager.getRoomReport());
 	}
 
 }
