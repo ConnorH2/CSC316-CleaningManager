@@ -155,7 +155,7 @@ public class ReportManager {
      */
     public String getRoomReport() {
     	// Initialize our room report string
-        String s = "Room Report [\n";
+        StringBuilder s = new StringBuilder("Room Report [\n");
         // Standard indent for the report is three spaces.
         String indent = "   ";
         
@@ -194,7 +194,9 @@ public class ReportManager {
         
         // Print out the report for each room
         for(Entry<String, List<CleaningLogEntry>> currentEntry : sortedList) {
-        	s = s + indent + currentEntry.getKey() + " was cleaned on [\n";
+        	s.append(indent);
+        	s.append(currentEntry.getKey());
+        	s.append(" was cleaned on [\n");
         	
         	// Convert the list to an array so we can sort it
         	CleaningLogEntry[] currentList = new CleaningLogEntry[currentEntry.getValue().size()];
@@ -215,19 +217,25 @@ public class ReportManager {
         	
         	// Print the timestamp for each cleaning
         	for(CleaningLogEntry currentCleaning : currentList) {
-        		s = s + indent + indent + currentCleaning.getTimestamp().format(DATE_TIME_FORMAT) + "\n";
+        		s.append(indent);
+        		s.append(indent);
+        		s.append(currentCleaning.getTimestamp().format(DATE_TIME_FORMAT));
+        		s.append('\n');
         	}
         	
         	// If the room has no cleanings, print (never cleaned)
         	if(currentEntry.getValue().size() == 0) {
-        		s = s + indent + indent + "(never cleaned)\n";
+        		s.append(indent);
+        		s.append(indent);
+        		s.append("(never cleaned)\n");
         	}
         	// Close the bracket
-        	s = s + indent + "]\n";
+        	s.append(indent);
+        	s.append("]\n");
         }
         
         // Close the bracket
-        s = s + "]";
+        s.append(']');
         
         // Check if there are no entries, if not then report error message
         if(!hasEntries) {
@@ -235,6 +243,6 @@ public class ReportManager {
         }
         
         // Return our constructed string
-        return s;
+        return s.toString();
     }
 }
