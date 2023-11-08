@@ -15,7 +15,7 @@ public class CleaningManagerUI {
 
 	/** ReportManager object for use in generating reports. */
 	private static ReportManager manager;
-	
+	// TODO JAVADOC TEST CODE
 	/**
 	 * Main function of CleaningManager which first accepts input room and log files, 
 	 * then executes one of the following four commands: 

@@ -227,6 +227,24 @@ class ReportManagerTest {
 		}
 		
 		assertEquals("No rooms have been cleaned.", manager.getRoomReport());
+		
+		
+		try {
+			manager = new ReportManager("input/rooms4.txt", "input/logs4.txt");
+		} catch (FileNotFoundException e) {
+			fail();
+		}
+		
+		assertEquals(
+				"Room Report [\n"
+				+ "   Attic was cleaned on [\n"
+				+ "      09/13/2023 20:08:05\n"
+				+ "   ]\n"
+				+ "   Loft was cleaned on [\n"
+				+ "      09/13/2023 19:02:55\n"
+				+ "   ]\n"
+				+ "]", manager.getRoomReport());
+		
 	}
 
 }
