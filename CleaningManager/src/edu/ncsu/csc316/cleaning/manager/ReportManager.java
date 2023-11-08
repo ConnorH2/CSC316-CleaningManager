@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Iterator;
 
 import edu.ncsu.csc316.cleaning.data.CleaningLogEntry;
 import edu.ncsu.csc316.cleaning.dsa.Algorithm;
@@ -168,17 +167,33 @@ public class ReportManager {
         }
         
         // Create an iterator to access the map entries in O(n) runtime 
-        Iterator<Entry<String, List<CleaningLogEntry>>> it1 = cleaningsByRoom.entrySet().iterator();
+        // TODO Iterator<Entry<String, List<CleaningLogEntry>>> it1 = cleaningsByRoom.entrySet().iterator();
         
         // Create a Sorter to sort the CleaningLogEntries by time
         Sorter<CleaningLogEntry> cleSorter = DSAFactory.getComparisonSorter(new CLERoomTimeComparator());
+        
+        // Sort the map entries by room name
+        
+        // Create an array of map entries to be sorted
+        @SuppressWarnings("unchecked")
+		Entry<String, List<CleaningLogEntry>>[] sortedList = new Entry[cleaningsByRoom.size()];
+
+        int idx1 = 0;
+        for(Entry<String, List<CleaningLogEntry>> entry : cleaningsByRoom.entrySet()) {
+        	sortedList[idx1] = entry;
+        	idx1++;
+        }
+
+        // Sort the array of map entries by frequency
+        DSAFactory.getComparisonSorter(new RoomComparator()).sort(sortedList);
+        
+        
         
         // Create a boolean flag to detect if there are no cleaning entries
         boolean hasEntries = false;
         
         // Print out the report for each room
-        while(it1.hasNext()) {
-        	Entry<String, List<CleaningLogEntry>> currentEntry = it1.next();
+        for(Entry<String, List<CleaningLogEntry>> currentEntry : sortedList) {
         	s = s + indent + currentEntry.getKey() + " was cleaned on [\n";
         	
         	// Convert the list to an array so we can sort it
