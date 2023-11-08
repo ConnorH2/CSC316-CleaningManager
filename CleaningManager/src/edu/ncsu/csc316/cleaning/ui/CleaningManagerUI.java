@@ -15,7 +15,7 @@ public class CleaningManagerUI {
 
 	/** ReportManager object for use in generating reports. */
 	private static ReportManager manager;
-	// TODO JAVADOC TEST CODE
+	
 	/**
 	 * Main function of CleaningManager which first accepts input room and log files, 
 	 * then executes one of the following four commands: 
@@ -78,7 +78,7 @@ public class CleaningManagerUI {
 					String command2 = input.next();
 					
 					// Parse the number into an int
-					int num = Integer.parseInt(command2); // TODO what happens if this throws an exception?
+					int num = Integer.parseInt(command2);
 					
 					// Print the string returned by getFrequencyReport
 					System.out.print("\n" + manager.getFrequencyReport(num) + "\n");
