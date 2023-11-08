@@ -62,7 +62,7 @@ public class ReportManager {
      * or how much area it can cover until then
      */
     public String getVacuumBagReport(String timestamp) {
-    	String s = "Vacuum Bag Report (last replaced " + timestamp + ") [\n";
+    	StringBuilder s = new StringBuilder("Vacuum Bag Report (last replaced " + timestamp + ") [\n");
     	
     	LocalDateTime timeObj;
     	// Parse the timestamp string and return an error string if unsuccessful
@@ -76,13 +76,13 @@ public class ReportManager {
     	
     	// Bag needs replacing if area over 5280 ft
     	if(area > 5280) {
-    		s = s + "   Bag is overdue for replacement!\n]";
+    		s.append("   Bag is overdue for replacement!\n]");
     	} else {
     		// Else, return the area until the bag is due for replacement
         	area = 5280 - area;
-        	s = s + "   Bag is due for replacement in " + area + " SQ FT\n]";
+        	s.append("   Bag is due for replacement in " + area + " SQ FT\n]");
     	}
-    	return s;
+    	return s.toString();
     }
 
     /**
@@ -101,7 +101,7 @@ public class ReportManager {
     	}
     	
     	// Initialize our frequency report string
-        String s = "Frequency of Cleanings [\n";
+        StringBuilder s = new StringBuilder("Frequency of Cleanings [\n");
         // Standard indent for the report is three spaces.
         String indent = "   ";
         
@@ -138,14 +138,18 @@ public class ReportManager {
         // Print out the frequency report for each room
         for(int i = 0; i < roomNum; i++) {
         	Entry<String, List<CleaningLogEntry>> current = sortedList[i];
-        	s = s + indent + current.getKey() + " has been cleaned " + current.getValue().size() + " times\n";
+        	s.append(indent);
+        	s.append(current.getKey());
+        	s.append(" has been cleaned ");
+        	s.append(current.getValue().size());
+        	s.append(" times\n");
         }
         
         // Close the bracket
-        s = s + "]";
+        s.append(']');
         
         // Return our constructed string
-        return s;
+        return s.toString();
     }
 
     /**
