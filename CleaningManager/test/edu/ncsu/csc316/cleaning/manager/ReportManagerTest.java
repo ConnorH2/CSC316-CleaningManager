@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.ncsu.csc316.cleaning.manager;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test class for ReportManager
+ * Test class for ReportManager which tests all methods and any error cases.
  * @author Connor Hekking
  */
 class ReportManagerTest {
@@ -31,6 +28,8 @@ class ReportManagerTest {
 
 	/**
 	 * Test method for {@link edu.ncsu.csc316.cleaning.manager.ReportManager#getVacuumBagReport(java.lang.String)}.
+	 * Tests getVacuumBagReport with rooms1.txt and logs1.txt which should output normally, 
+	 * as well as rooms2.txt and logs2.txt which are empty.
 	 */
 	@Test
 	void testGetVacuumBagReport() {
@@ -101,6 +100,8 @@ class ReportManagerTest {
 
 	/**
 	 * Test method for {@link edu.ncsu.csc316.cleaning.manager.ReportManager#getFrequencyReport(int)}.
+	 * Tests getFrequencyReport with rooms1.txt and logs1.txt which should output normally, 
+	 * as well as rooms2.txt and logs2.txt which are empty and should report no rooms have been cleaned.
 	 */
 	@Test
 	void testGetFrequencyReport() {
@@ -182,9 +183,13 @@ class ReportManagerTest {
 
 	/**
 	 * Test method for {@link edu.ncsu.csc316.cleaning.manager.ReportManager#getRoomReport()}.
+	 * Tests getRoomReport with rooms1.txt and logs1.txt which should output normally, 
+	 * as well as rooms2.txt and logs2.txt which are empty and should report no rooms have been cleaned.
+	 * This method also tests the invalid rooms3 and logs3 text files.
 	 */
 	@Test
 	void testGetRoomReport() {
+		// 
 		assertEquals(
 				"Room Report [\n"
 				+ "   Dining Room was cleaned on [\n"
@@ -220,6 +225,7 @@ class ReportManagerTest {
 				+ "   ]\n"
 				+ "]", manager.getRoomReport());
 		
+		// Try reading in valid rooms and logs files that have no entries or rooms
 		try {
 			manager = new ReportManager("input/rooms2.txt", "input/logs2.txt");
 		} catch (FileNotFoundException e) {
@@ -228,23 +234,13 @@ class ReportManagerTest {
 		
 		assertEquals("No rooms have been cleaned.", manager.getRoomReport());
 		
-		
+		// Try reading invalid rooms and logs files
 		try {
-			manager = new ReportManager("input/rooms4.txt", "input/logs4.txt");
-		} catch (FileNotFoundException e) {
+			manager = new ReportManager("input/rooms3.txt", "input/logs3.txt");
 			fail();
+		} catch (Exception e) {
+			// do nothing, this is the expected
 		}
-		
-		assertEquals(
-				"Room Report [\n"
-				+ "   Attic was cleaned on [\n"
-				+ "      09/13/2023 20:08:05\n"
-				+ "   ]\n"
-				+ "   Loft was cleaned on [\n"
-				+ "      09/13/2023 19:02:55\n"
-				+ "   ]\n"
-				+ "]", manager.getRoomReport());
-		
 	}
 
 }

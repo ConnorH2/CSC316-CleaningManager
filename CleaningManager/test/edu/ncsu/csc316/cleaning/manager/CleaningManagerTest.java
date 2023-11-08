@@ -16,13 +16,13 @@ import edu.ncsu.csc316.dsa.map.Map;
 import edu.ncsu.csc316.dsa.map.Map.Entry;
 
 /**
- * Test class for CleaningManager
+ * Test class for CleaningManager which tests all methods and any error cases.
  * @author Connor Hekking
  */
 class CleaningManagerTest {
-// TODO JAVADOC TEST CODE
 	/** CleaningManager object for testing. */
 	CleaningManager manager;
+	
 	
 	@BeforeEach
     public void setUp() {
@@ -33,6 +33,11 @@ class CleaningManagerTest {
 		}
     }
 	
+	/**
+	 * Test method for {@link edu.ncsu.csc316.cleaning.manager.CleaningManager#getEventsByRoom()}.
+	 * Tests getEventsByRoom with rooms1.txt and logs1.txt which should output normally, 
+	 * as well as rooms2.txt and logs2.txt which are empty.
+	 */
 	@Test
 	void testGetEventsByRoom() {
 		assertThrows(FileNotFoundException.class, () -> new CleaningManager("input/rooms0.txt", "input/logs0.txt"));
@@ -98,6 +103,12 @@ class CleaningManagerTest {
 		assertEquals("TestEmpty", manager.getEventsByRoom().entrySet().iterator().next().getKey());
 	}
 
+	/**
+	 * Test method for {@link edu.ncsu.csc316.cleaning.manager.CleaningManager#getCoverageSince(java.time.LocalDateTime)}.
+	 * Tests getCoverageSince with rooms1.txt and logs1.txt which should output normally, 
+	 * as well as rooms2.txt and logs2.txt which are empty.
+	 * This method also tests the invalid rooms3 and logs3 text files.
+	 */
 	@Test
 	void testGetCoverageSince() {
 		LocalDateTime t0 = LocalDateTime.parse("10/31/2023 13:20:43", ReportManager.DATE_TIME_FORMAT);
@@ -133,6 +144,13 @@ class CleaningManagerTest {
 		
 		assertEquals(0, manager.getCoverageSince(t10));
 		
+		// Try reading invalid rooms and logs files
+		try {
+			manager = new CleaningManager("input/rooms3.txt", "input/logs3.txt");
+			fail();
+		} catch (Exception e) {
+			// do nothing, this is the expected
+		}
 	}
 
 }

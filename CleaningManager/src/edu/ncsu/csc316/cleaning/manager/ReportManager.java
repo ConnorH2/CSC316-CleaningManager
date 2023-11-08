@@ -170,9 +170,6 @@ public class ReportManager {
         	return "No rooms have been cleaned.";
         }
         
-        // Create an iterator to access the map entries in O(n) runtime 
-        // TODO Iterator<Entry<String, List<CleaningLogEntry>>> it1 = cleaningsByRoom.entrySet().iterator();
-        
         // Create a Sorter to sort the CleaningLogEntries by time
         Sorter<CleaningLogEntry> cleSorter = DSAFactory.getComparisonSorter(new CLERoomTimeComparator());
         

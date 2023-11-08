@@ -1,3 +1,0 @@
-ROOM_ID,LENGTH,WIDTH
-Loft,10,10
-Attic,10,5
